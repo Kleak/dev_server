@@ -1,0 +1,1 @@
+export 'src/pwa_handler.dart';
