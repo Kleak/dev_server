@@ -5,7 +5,7 @@ import 'package:shelf/shelf.dart';
 
 import 'resource_handler.dart';
 
-const authorizedExtensions = const [
+const authorizedResourceExtensions = const [
   'js',
   'css',
   'html',
@@ -17,11 +17,13 @@ const authorizedExtensions = const [
   'svg',
   'ico',
   'json',
+  'dart',
 ];
 
 Future<Response> pwaHandler(Request request) async {
   final path = request.requestedUri.path;
-  final regExp = new RegExp('^.*.(${authorizedExtensions.join('|')})\$');
+  final regExp =
+      new RegExp('^.*.(${authorizedResourceExtensions.join('|')})\$');
   if (regExp.hasMatch(path)) {
     return resourceHandler(request.change(), regExp.firstMatch(path).group(1));
   }
