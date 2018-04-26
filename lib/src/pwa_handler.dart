@@ -20,10 +20,10 @@ const authorizedResourceExtensions = const [
   'dart',
 ];
 
+final regExp = new RegExp('^.*.(${authorizedResourceExtensions.join('|')})\$');
+
 Future<Response> pwaHandler(Request request) async {
   final path = request.requestedUri.path;
-  final regExp =
-      new RegExp('^.*.(${authorizedResourceExtensions.join('|')})\$');
   if (regExp.hasMatch(path)) {
     return resourceHandler(request.change(), regExp.firstMatch(path).group(1));
   }
