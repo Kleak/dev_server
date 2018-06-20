@@ -10,7 +10,7 @@ Future<Response> resourceHandler(Request request, String type) async {
   if (file.existsSync()) {
     return new Response.ok(
       file.readAsBytesSync(),
-      headers: {'Content-Type': lookupMimeType(type)},
+      headers: {'Content-Type': lookupMimeType('.$type')},
     );
   }
   return new Response.notFound('Not found');
